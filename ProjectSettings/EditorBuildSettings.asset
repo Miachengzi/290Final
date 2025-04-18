@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/JP_Apartment/Scenes/Preface.unity
+    guid: 7324c501feb6008438801eee605369ce
+  - enabled: 1
+    path: Assets/JP_Apartment/Scenes/Apartment.unity
+    guid: 80d478da8e2658d4eb769f806029f900
+  - enabled: 1
+    path: Assets/JP_Apartment/Scenes/Ending.unity
+    guid: 459eb074e92148c4ca9258d70baf3e3a
   m_configObjects: {}
