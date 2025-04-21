@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Text clueNumText;
     public GoldPlayerController playerController;
     public AudioClip collectAudioClip;
+    public AudioClip interactAudioClip;
 
     [SerializeField]
     private string currentObjName = "";
@@ -35,11 +36,12 @@ public class GameManager : MonoBehaviour
     private List<string> collectedObjs = new List<string>();
     private string[] lines;
     private Scene scene;
+    private GameObject endSceneTips;
     
     private void Awake()
     {
         scene = SceneManager.GetActiveScene();
-
+        playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
         if (Instance == null)
         {
             Instance = this;
@@ -57,10 +59,14 @@ public class GameManager : MonoBehaviour
         clueNumText = GameObject.Find("Canvas").transform.Find("ClueNumText").GetComponent<Text>();
         playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
         collectAudioClip = Resources.Load<AudioClip>("Audio/Collection");
+        interactAudioClip = Resources.Load<AudioClip>("Audio/Interact");
+        endSceneTips = GameObject.Find("Canvas").transform.Find("EndSceneTips").gameObject;
 
         //revealButton= GameObject.Find("Canvas").transform.Find("Reveal").GetComponent<Button>();
         //revealButton.onClick.RemoveAllListeners();
         //revealButton.gameObject.SetActive(false);
+
+        //StartCoroutine(panel.GetComponent<PanelAnimator>().HidePanel());
 
         collectedObjs = new List<string>();
         collectedObjs.Clear();
@@ -156,10 +162,7 @@ public class GameManager : MonoBehaviour
     {
         if(stage == Stage.Preface)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                StartCoroutine(LoadSceneWithInit(1));
-            }
+            playerController.Movement.smoothedMovementInput = new Vector2(0, 1.0f);
         }
         else if(stage == Stage.InHome)
         {
@@ -172,7 +175,12 @@ public class GameManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && lastShowPanelFrameIndex != -1 && lastShowPanelFrameIndex + 10 < Time.frameCount)
                 HidePanelAndAllImage();
 
-            if (Input.GetKeyDown(KeyCode.Return) && collectedObjs.Count == 7 && clueObjects[currentObjName].GetComponent<GoldPlayerInteractable>().IsInteractable)
+            if(collectedObjs.Count == 7 && !endSceneTips.activeSelf && clueObjects[currentObjName].GetComponent<GoldPlayerInteractable>().IsInteractable)
+            {
+                endSceneTips.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) && endSceneTips.activeSelf )
             {
                 SceneManager.LoadScene(2);
             }
@@ -198,8 +206,6 @@ public class GameManager : MonoBehaviour
     {
         DisactiveAllImage();
 
-        panel.gameObject.SetActive(true);
-
         if(clueImages[ObjectName] != null)
             clueImages[ObjectName].gameObject.SetActive(true);
         else
@@ -207,21 +213,26 @@ public class GameManager : MonoBehaviour
             Debug.LogError(ObjectName + " isnt exist");
         }
 
+        StartCoroutine(panel.GetComponent<PanelAnimator>().ShowPanel());
+
         clueText.text = clueLines[ObjectName];
 
         if (!collectedObjs.Contains(ObjectName))
         {
             collectedObjs.Add(ObjectName);
+
+            // collection Sound
+            AudioSource.PlayClipAtPoint(collectAudioClip, clueObjects[ObjectName].position);
         }
 
-        clueNumText.text = $"{collectedObjs.Count} / 7";
+        AudioSource.PlayClipAtPoint(interactAudioClip, clueObjects[ObjectName].position);
+
+        clueNumText.text = $"Clues {collectedObjs.Count} / 7";
 
         // disable current transform's interactable
         DisablePlayerHeadRotateAndMovement();
 
         DisableCurrentObjectInteractable(clueObjects[ObjectName].GetComponent<GoldPlayerInteractable>());
-
-        AudioSource.PlayClipAtPoint(collectAudioClip, clueObjects[ObjectName].position);
 
         currentObjName = ObjectName;
         isShowPanel = true;
@@ -238,13 +249,11 @@ public class GameManager : MonoBehaviour
     {
         if (isShowPanel)
         {
-            panel.gameObject.SetActive(false);
-            DisactiveAllImage();
+            StartCoroutine(panel.GetComponent<PanelAnimator>().HidePanel());
             EnablePlayerHeadRotateAndMovement();
             // enable current stuff interactable
-            Invoke("EnableCurrentObjectInteractable", 0.666f);
-            
-            isShowPanel=false;
+            Invoke("EnableCurrentObjectInteractable", 1.666f);
+            isShowPanel = false;
         }
         
     }
@@ -267,7 +276,7 @@ public class GameManager : MonoBehaviour
     {
         obj.IsInteractable = false;
     }
-    IEnumerator LoadSceneWithInit(int sceneIndex)
+    public IEnumerator LoadSceneWithInit(int sceneIndex)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
         asyncLoad.allowSceneActivation = false; // 禁止自动跳转
@@ -279,12 +288,25 @@ public class GameManager : MonoBehaviour
         }
 
         asyncLoad.allowSceneActivation = true; // 激活场景
-        yield return new WaitUntil(() => asyncLoad.isDone); // 确保场景完全加载
+        yield return new WaitUntil(() => 
+        {
+            Debug.Log($"当前isDone状态: {asyncLoad.isDone}"); // 监控isDone
+            return asyncLoad.isDone;
+            }
+        ); // 确保场景完全加载
 
+        Debug.Log("场景加载完成，准备初始化"); // 确认执行到此处
         // 延迟1帧确保所有对象初始化
         yield return null;
         if(sceneIndex == 1)
+        {
+            Debug.Log("检测到场景1，调用初始化");
             GameManager.Instance.InitializedInHomeStage();
+        }
+    }
+    public void LoadSceneWithIndex(int i)
+    {
+        StartCoroutine(LoadSceneWithInit(i));
     }
     void OnRevealButtonClicked()
     {
