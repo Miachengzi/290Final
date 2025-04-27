@@ -40,6 +40,8 @@ public class PrefaceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if(player.position.z > 3 && state == State.Start)
         {
             audioSource.Play();
@@ -56,7 +58,7 @@ public class PrefaceManager : MonoBehaviour
         {
             colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
 
-            if(colorGrading.postExposure.value > 16.0f)
+            if(colorGrading.postExposure.value > 17.0f)
             {
                 GameManager.Instance.LoadSceneWithIndex(1);
                 state = State.LoadNextScene;
@@ -68,9 +70,9 @@ public class PrefaceManager : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.LoadSceneWithIndex(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    GameManager.Instance.LoadSceneWithIndex(1);
+        //}
     }
 }

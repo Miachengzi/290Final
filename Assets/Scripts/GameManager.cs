@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     private string[] lines;
     private Scene scene;
     private GameObject endSceneTips;
+
+    private ImageFader imageFader;
     
     private void Awake()
     {
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        imageFader = GameObject.Find("Canvas_Fade").transform.Find("BlackMask").GetComponent<ImageFader>();
+        StartCoroutine(imageFader.FadeOut());
     }
     private void InitializedInHomeStage()
     {
@@ -116,6 +121,10 @@ public class GameManager : MonoBehaviour
         clueLines.Add("Envelope", lines[4]);
         clueLines.Add("Box", lines[1]);
     }
+    private void InitializedInEndingStage()
+    {
+        playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
+    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -180,14 +189,14 @@ public class GameManager : MonoBehaviour
                 endSceneTips.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) && endSceneTips.activeSelf )
+            if (Input.GetKeyDown(KeyCode.Return) && endSceneTips.activeSelf)
             {
-                SceneManager.LoadScene(2);
+                LoadSceneWithIndex(2);
             }
         }
         else if(stage == Stage.Ending)
         {
-
+            playerController.Movement.smoothedMovementInput = new Vector2(0, -1.0f);
         }
     }
     void HideAndLockCursor()
@@ -287,6 +296,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+        StartCoroutine(imageFader.FadeOut());
+
         asyncLoad.allowSceneActivation = true; // 激活场景
         yield return new WaitUntil(() => 
         {
@@ -302,6 +313,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("检测到场景1，调用初始化");
             GameManager.Instance.InitializedInHomeStage();
+        }
+        else if(sceneIndex == 2)
+        {
+            InitializedInEndingStage();
         }
     }
     public void LoadSceneWithIndex(int i)
