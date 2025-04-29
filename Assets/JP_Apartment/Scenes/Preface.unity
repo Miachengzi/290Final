@@ -1661,8 +1661,8 @@ MonoBehaviour:
   audioSource: {fileID: 1954972896}
   player: {fileID: 61141265}
   postVolume: {fileID: 1290676301}
-  fadeStrength: 0.9
-  fadeSpeed: 0.5
+  fadeStrength: 1
+  fadeSpeed: 2.6
 --- !u!1 &1648237913
 GameObject:
   m_ObjectHideFlags: 0

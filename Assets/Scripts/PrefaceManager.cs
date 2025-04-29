@@ -20,8 +20,8 @@ public class PrefaceManager : MonoBehaviour
         LoadNextScene,
     } State state;
 
-    public float fadeStrength = 0.1f; // 缩放强度（相对于原始尺寸）
-    public float fadeSpeed = 1.0f;    // 缩放速度
+    public float fadeStrength = 1.0f; // 缩放强度（相对于原始尺寸）
+    public float fadeSpeed = 3.1f;    // 缩放速度
 
     private float originalValue;
 
@@ -48,31 +48,36 @@ public class PrefaceManager : MonoBehaviour
             state = State.PlayingPreface;
         }
 
-        if (state == State.PlayingPreface && !audioSource.isPlaying)
+
+        if (state == State.PlayingPreface && audioSource.time > 42.0f)
         {
             state = State.FadingOut;
             
         }
 
-        if(state == State.FadingOut)
-        {
-            colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
-
-            if(colorGrading.postExposure.value > 17.0f)
-            {
-                GameManager.Instance.LoadSceneWithIndex(1);
-                state = State.LoadNextScene;
-            }
-        }
+        
 
         if(state == State.LoadNextScene)
         {
             
         }
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GameManager.Instance.LoadSceneWithIndex(1);
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.LoadSceneWithIndex(1);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (state == State.FadingOut)
+        {
+            colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
+
+            if (colorGrading.postExposure.value > 17.0f)
+            {
+                GameManager.Instance.LoadSceneWithIndex(1);
+                state = State.LoadNextScene;
+            }
+        }
     }
 }
