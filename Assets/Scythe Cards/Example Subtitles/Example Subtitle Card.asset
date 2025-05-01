@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a3862f033831f45ba9ac8336b94e8a, type: 3}
+  m_Name: Example Subtitle Card
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Hello! This is a sample dialogue card!
+  - Each line will play in order, and pause based on the timing.
+  - You can go really fast!
+  - Or stay on a line for a long time, even in float seconds!
+  - It's really easy to call a subtitle, lets go through it!
+  - First you Right Click>Create>Subtitle Card Data
+  - Fill out your subtitle timing and dialogue
+  - The simply add the using statement <b>'Scythe.Accessibility'</b> and <b>'Scythe.Accessibility.Data'</b>
+  - Add a reference to the subtitle card you just made...
+  - Then call it from that same script using <b>SubtitleManager.instance.CueSubtitle(ref)</b>
+  - It's that easy!
+  pauseUntilNextLine:
+  - 4
+  - 8
+  - 2
+  - 6.8
+  - 7
+  - 5
+  - 6.3
+  - 7
+  - 5
+  - 7
+  - 4

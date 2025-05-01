@@ -6940,6 +6940,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_Text
+      value: Cups?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 7416cb8fdd3670e41abb337bdfef9001, type: 3}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483419760109524185, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 5208557247301992130, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
       propertyPath: player
       value: 
@@ -7023,6 +7051,14 @@ PrefabInstance:
     - target: {fileID: 5553517141764730625, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722548901758727198, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 59.5351
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722548901758727198, guid: b88f7bb69407879409ef27f744f90ce8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

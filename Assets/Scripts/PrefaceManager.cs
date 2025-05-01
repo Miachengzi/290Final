@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Scythe.Accessibility;
+
 public class PrefaceManager : MonoBehaviour
 {
     public AudioSource audioSource;
@@ -11,6 +13,8 @@ public class PrefaceManager : MonoBehaviour
     public PostProcessVolume postVolume;
 
     private ColorGrading colorGrading;
+
+    [SerializeField] SubtitleCard subtitleCard;
     enum State
     {
         None,
@@ -45,14 +49,24 @@ public class PrefaceManager : MonoBehaviour
         if(player.position.z > 3 && state == State.Start)
         {
             audioSource.Play();
+
+            if(GameManager.Instance.stage == Stage.Ending)
+                SubtitleManager.instance.CueSubtitle(subtitleCard);
+
             state = State.PlayingPreface;
         }
 
 
-        if (state == State.PlayingPreface && audioSource.time > 42.0f)
+        if (state == State.PlayingPreface)
         {
-            state = State.FadingOut;
-            
+            if(GameManager.Instance.stage == Stage.Preface && audioSource.time > 42.0f)
+            {
+                state = State.FadingOut;
+            }
+            else if (GameManager.Instance.stage == Stage.Ending && !audioSource.isPlaying)
+            {
+                state = State.FadingOut;
+            }
         }
 
         
