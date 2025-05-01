@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &244137733
 Transform:
   m_ObjectHideFlags: 0
@@ -172,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 1982862597378236, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
       propertyPath: m_Name
       value: bathtub01_shelf (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982862597378236, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4877613111019548, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
       propertyPath: m_LocalScale.x
@@ -327,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &776687380
 Transform:
   m_ObjectHideFlags: 0
@@ -363,6 +367,98 @@ MonoBehaviour:
   collectAudioClip: {fileID: 0}
   interactAudioClip: {fileID: 0}
   currentObjName: 
+--- !u!1 &795833604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 795833607}
+  - component: {fileID: 795833606}
+  - component: {fileID: 795833605}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &795833605
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795833604}
+  m_Enabled: 1
+--- !u!20 &795833606
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795833604}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &795833607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795833604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.254501, z: 64.049995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837490521
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,12 +484,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837490521}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.69, z: 63.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 61141265}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &837490523
 AudioSource:
@@ -407,7 +503,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0a0ddd858c7f71540bafcb2cece6193d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.156
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -687,8 +783,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 22.99
-  m_Range: 16.45
+  m_Intensity: 6.1
+  m_Range: 13.71
   m_SpotAngle: 43
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -942,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4251683599787534432, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4251683599787963436, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1174,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6414822445586904135, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6588876352044686269, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: useKeyCodes
@@ -1183,6 +1279,10 @@ PrefabInstance:
     - target: {fileID: 7432623751487497445, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: m_Name
       value: Gold Player Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432623751487497445, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7498456309379651380, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       propertyPath: m_Volume
@@ -1234,13 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8659392822771183598, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1954972894}
-    - targetCorrespondingSourceObject: {fileID: 8659392822771183598, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 837490522}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1882901048145137613, guid: a86c9836b7c056444a731b297946e8eb, type: 3}
       insertIndex: -1
@@ -1347,6 +1441,10 @@ PrefabInstance:
     - target: {fileID: 1705111296392436, guid: b4173cc8b3fc5f8469d1b2888180e9c6, type: 3}
       propertyPath: m_Name
       value: door02+closer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705111296392436, guid: b4173cc8b3fc5f8469d1b2888180e9c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233411187281678, guid: b4173cc8b3fc5f8469d1b2888180e9c6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1525,6 +1623,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 840956060}
     m_Modifications:
+    - target: {fileID: 347693030697300785, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
+      propertyPath: m_margin.w
+      value: -105.35739
+      objectReference: {fileID: 0}
+    - target: {fileID: 347693030697300785, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
+      propertyPath: m_margin.x
+      value: -556.86755
+      objectReference: {fileID: 0}
+    - target: {fileID: 347693030697300785, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
+      propertyPath: m_margin.y
+      value: -81.32794
+      objectReference: {fileID: 0}
+    - target: {fileID: 347693030697300785, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
+      propertyPath: m_margin.z
+      value: -562.2705
+      objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1539,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1547,7 +1661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1591,7 +1705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4753577803665988097, guid: 76d376ac54722ab43b666835b90ba4f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1924,6 +2038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bathtub01_shelf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1982862597378236, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4877613111019548, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
       propertyPath: m_LocalScale.x
       value: 148.27502
@@ -2103,12 +2221,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954972893}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.69, z: 63.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 61141265}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1954972896
 AudioSource:
@@ -2224,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2000648256
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2323,6 +2441,10 @@ PrefabInstance:
     - target: {fileID: 1982862597378236, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
       propertyPath: m_Name
       value: bathtub01_shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982862597378236, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4877613111019548, guid: 38fd95313104f564db0360fbe2a8360e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2428,3 +2550,6 @@ SceneRoots:
   - {fileID: 1468127878}
   - {fileID: 840956060}
   - {fileID: 408996382}
+  - {fileID: 795833607}
+  - {fileID: 1954972894}
+  - {fileID: 837490522}

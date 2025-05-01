@@ -15,7 +15,7 @@ public class ImageFader : MonoBehaviour
         Color color = element.color;
         color.a = 0f;
         element.color = color;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         //StartCoroutine(FadeInAndOut());
     }
 
