@@ -15,14 +15,16 @@ public class PrefaceManager : MonoBehaviour
     private ColorGrading colorGrading;
 
     [SerializeField] SubtitleCard subtitleCard;
-    enum State
+
+    public GameObject canvas;
+    public enum State
     {
         None,
         Start,
         PlayingPreface,
         FadingOut,
-        LoadNextScene,
-    } State state;
+        LoadFirstScene,
+    } public State state;
 
     public float fadeStrength = 1.0f; // 缩放强度（相对于原始尺寸）
     public float fadeSpeed = 3.1f;    // 缩放速度
@@ -32,54 +34,45 @@ public class PrefaceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = State.Start;
+        state = State.None;
 
         if (postVolume.profile.TryGetSettings(out colorGrading))
         {
             // 初始化参数（可选）
-            originalValue = colorGrading.postExposure.value; // colorGrading.temperature.value = 0f; // 默认色温
+            originalValue = colorGrading.postExposure.value;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if(player.position.z > 3 && state == State.Start)
         {
             audioSource.Play();
-
-            if(GameManager.Instance.stage == Stage.Ending)
+            audioSource.time = 0;
+            if (GameManager.Instance.stage == Stage.Ending)
+            {
                 SubtitleManager.instance.CueSubtitle(subtitleCard);
+                SubtitleManager.instance.OnSubtitleFinished.AddListener(() => state = State.LoadFirstScene);
+            }
 
             state = State.PlayingPreface;
         }
-
-
         if (state == State.PlayingPreface)
         {
-            if(GameManager.Instance.stage == Stage.Preface && audioSource.time > 42.0f)
-            {
-                state = State.FadingOut;
-            }
-            else if (GameManager.Instance.stage == Stage.Ending && !audioSource.isPlaying)
+            if(GameManager.Instance.stage == Stage.Preface && audioSource.time > 42.8f)
             {
                 state = State.FadingOut;
             }
         }
-
-        
-
-        if(state == State.LoadNextScene)
+        if (state == State.LoadFirstScene)// || Input.GetKeyDown(KeyCode.A))
         {
-            
+            GameManager.Instance.LoadSceneWithIndex(0);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.LoadSceneWithIndex(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    GameManager.Instance.LoadSceneWithIndex(1);
+        //}
     }
     private void FixedUpdate()
     {
@@ -90,8 +83,13 @@ public class PrefaceManager : MonoBehaviour
             if (colorGrading.postExposure.value > 17.0f)
             {
                 GameManager.Instance.LoadSceneWithIndex(1);
-                state = State.LoadNextScene;
+                state = State.None;
             }
         }
+    }
+    private void OnDestroy()
+    {
+        if(SubtitleManager.instance != null)
+            SubtitleManager.instance.OnSubtitleFinished.RemoveAllListeners();
     }
 }

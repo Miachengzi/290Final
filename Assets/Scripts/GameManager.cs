@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
     private string[] lines;
     private Scene scene;
     private GameObject endSceneTips;
+    private PrefaceManager prefaceManager;
 
     private ImageFader imageFader;
     
     private void Awake()
     {
-        scene = SceneManager.GetActiveScene();
-        playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
+        InitializedInPrefaceStage();
         if (Instance == null)
         {
             Instance = this;
@@ -53,9 +53,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        imageFader = GameObject.Find("Canvas_Fade").transform.Find("BlackMask").GetComponent<ImageFader>();
-        StartCoroutine(imageFader.FadeOut());
     }
     private void InitializedInHomeStage()
     {
@@ -123,7 +120,19 @@ public class GameManager : MonoBehaviour
     }
     private void InitializedInEndingStage()
     {
+        //playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
+        prefaceManager = GameObject.Find("PrefaceManager").GetComponent<PrefaceManager>();
+        prefaceManager.state = PrefaceManager.State.Start;
+    }
+    private void InitializedInPrefaceStage()
+    {
+        scene = SceneManager.GetActiveScene();
         playerController = GameObject.Find("Gold Player Controller").GetComponent<GoldPlayerController>();
+
+        imageFader = GameObject.Find("Canvas_Fade").transform.Find("BlackMask").GetComponent<ImageFader>();
+        prefaceManager = GameObject.Find("PrefaceManager").GetComponent<PrefaceManager>();
+
+        StartCoroutine(imageFader.FadeOut());
     }
     private void OnEnable()
     {
@@ -171,7 +180,24 @@ public class GameManager : MonoBehaviour
     {
         if(stage == Stage.Preface)
         {
-            playerController.Movement.smoothedMovementInput = new Vector2(0, 1.0f);
+            if(prefaceManager.state == PrefaceManager.State.None)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))//&& endSceneTips.activeSelf)
+                {
+                    prefaceManager.state = PrefaceManager.State.Start;
+                    StartCoroutine(imageFader.FadeOut());
+                    prefaceManager.canvas.SetActive(false);
+                }
+                if (Input.GetKeyDown(KeyCode.Escape))//&& endSceneTips.activeSelf)
+                {
+                    Application.Quit();
+                }
+            }
+            else
+            {
+                if (playerController != null)
+                    playerController.Movement.smoothedMovementInput = new Vector2(0, 1.0f);
+            }
         }
         else if(stage == Stage.InHome)
         {
@@ -189,14 +215,13 @@ public class GameManager : MonoBehaviour
                 endSceneTips.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) )//&& endSceneTips.activeSelf)
+            if (Input.GetKeyDown(KeyCode.Return) && endSceneTips.activeSelf)
             {
                 LoadSceneWithIndex(2);
             }
         }
         else if(stage == Stage.Ending)
         {
-            playerController.Movement.smoothedMovementInput = new Vector2(0, -1.0f);
         }
     }
     void HideAndLockCursor()
@@ -318,15 +343,14 @@ public class GameManager : MonoBehaviour
         {
             InitializedInEndingStage();
         }
+        else if(sceneIndex == 0)
+        {
+            InitializedInPrefaceStage();
+        }
     }
     public void LoadSceneWithIndex(int i)
     {
         StartCoroutine(LoadSceneWithInit(i));
-    }
-    void OnRevealButtonClicked()
-    {
-        Debug.Log("按钮点击生效！");
-        SceneManager.LoadScene(2);
     }
     void OnDestroy()
     {
