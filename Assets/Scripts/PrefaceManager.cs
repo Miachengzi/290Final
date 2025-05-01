@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 public class PrefaceManager : MonoBehaviour
 {
     public AudioSource audioSource;
 
     public Transform player;
 
-    public PostProcessVolume postVolume;
+    public VolumeProfile postVolume;
+    private ColorAdjustments colorAdjustments;
 
-    private ColorGrading colorGrading;
     enum State
     {
         None,
@@ -30,10 +32,10 @@ public class PrefaceManager : MonoBehaviour
     {
         state = State.Start;
 
-        if (postVolume.profile.TryGetSettings(out colorGrading))
+        if (postVolume.TryGet(out colorAdjustments))
         {
             // 初始化参数（可选）
-            originalValue = colorGrading.postExposure.value; // colorGrading.temperature.value = 0f; // 默认色温
+            originalValue = colorAdjustments.postExposure.value; // colorGrading.temperature.value = 0f; // 默认色温
         }
     }
 
@@ -71,9 +73,9 @@ public class PrefaceManager : MonoBehaviour
     {
         if (state == State.FadingOut)
         {
-            colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
+            colorAdjustments.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
 
-            if (colorGrading.postExposure.value > 17.0f)
+            if (colorAdjustments.postExposure.value > 17.0f)
             {
                 GameManager.Instance.LoadSceneWithIndex(1);
                 state = State.LoadNextScene;
