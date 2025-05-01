@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
                 endSceneTips.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) && endSceneTips.activeSelf)
+            if (Input.GetKeyDown(KeyCode.Return) )//&& endSceneTips.activeSelf)
             {
                 LoadSceneWithIndex(2);
             }

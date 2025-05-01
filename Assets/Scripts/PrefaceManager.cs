@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.PostProcessing;
+using Scythe.Accessibility;
 
 public class PrefaceManager : MonoBehaviour
 {
@@ -10,9 +10,11 @@ public class PrefaceManager : MonoBehaviour
 
     public Transform player;
 
-    public VolumeProfile postVolume;
-    private ColorAdjustments colorAdjustments;
+    public PostProcessVolume postVolume;
 
+    private ColorGrading colorGrading;
+
+    [SerializeField] SubtitleCard subtitleCard;
     enum State
     {
         None,
@@ -32,10 +34,10 @@ public class PrefaceManager : MonoBehaviour
     {
         state = State.Start;
 
-        if (postVolume.TryGet(out colorAdjustments))
+        if (postVolume.profile.TryGetSettings(out colorGrading))
         {
             // 初始化参数（可选）
-            originalValue = colorAdjustments.postExposure.value; // colorGrading.temperature.value = 0f; // 默认色温
+            originalValue = colorGrading.postExposure.value; // colorGrading.temperature.value = 0f; // 默认色温
         }
     }
 
@@ -47,14 +49,24 @@ public class PrefaceManager : MonoBehaviour
         if(player.position.z > 3 && state == State.Start)
         {
             audioSource.Play();
+
+            if(GameManager.Instance.stage == Stage.Ending)
+                SubtitleManager.instance.CueSubtitle(subtitleCard);
+
             state = State.PlayingPreface;
         }
 
 
-        if (state == State.PlayingPreface && audioSource.time > 42.0f)
+        if (state == State.PlayingPreface)
         {
-            state = State.FadingOut;
-            
+            if(GameManager.Instance.stage == Stage.Preface && audioSource.time > 42.0f)
+            {
+                state = State.FadingOut;
+            }
+            else if (GameManager.Instance.stage == Stage.Ending && !audioSource.isPlaying)
+            {
+                state = State.FadingOut;
+            }
         }
 
         
@@ -73,9 +85,9 @@ public class PrefaceManager : MonoBehaviour
     {
         if (state == State.FadingOut)
         {
-            colorAdjustments.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
+            colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
 
-            if (colorAdjustments.postExposure.value > 17.0f)
+            if (colorGrading.postExposure.value > 17.0f)
             {
                 GameManager.Instance.LoadSceneWithIndex(1);
                 state = State.LoadNextScene;

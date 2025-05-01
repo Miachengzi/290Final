@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a3862f033831f45ba9ac8336b94e8a, type: 3}
+  m_Name: Part2
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "The \uFB01rst time I met him . . . was on a bench outside the emergency room
+    ."
+  - "He was sitting there \u2014 holding his violin, head down, still as a statue,
+    lost in silence ."
+  - He looked up and asked me, "Doctor, how long will it take for my broken hand
+    to heal?"
+  - I never thought. . . that question would become the beginning of the longest
+    melody in my life.
+  - "Later, I learned \u2014 he was a famous violinist. Cold-tempered, distant. .
+    .   rarely speaking to anyone."
+  - "But somehow... every time he came back for a check-up, we always ended up talking
+    \u2014 about pain, about music . . . and about loneliness ."
+  - "He once told me I was different. That my voice sounded like a cello \u2014 calm,
+    steady, warm \u2014 like the sound of home from his childhood."
+  - "My life had always been like a medical report \u2014 clear, predictable, written
+    and controlled by my parents ."
+  - "But he. . . he was like music itself \u2014 free ."
+  - "For the \uFB01rst time, he made me wonder \u2014 could I live for myself?"
+  - I helped him recover. He taught me to play the violin .
+  - "The sound between the bow and the strings. . . became a memory I knew I\u2019d
+    carry with me for the rest of my life."
+  - Slowly. . . our relationship changed. It became soft. It became sweet.
+  - "I thought. . . we could keep walking like that forever. But fate . . . didn\u2019t
+    give us enough time ."
+  - An unexpected engagement forced me to leave him .
+  - "And he. . . he didn\u2019t ask me to stay."
+  - That day, he shattered his bow. I knew. . . that was him cutting off every path
+    that could lead back to me .
+  - "Later. . . he went abroad \u2014 became an even greater artist."
+  - I once went to see him perform, in secret. But I never showed myself.
+  - Maybe for us . . . never meeting again was the most graceful farewell.
+  - "Until that sudden tragedy \u2014 that violent act in the hospital \u2014 took
+    my life away."
+  - Thank you. . . for reading these words I left behind,  buried in the things I
+    could never say.
+  - "And if you\u2019re still listening \u2014"
+  - '"I never blamed you. I was just. . . too afraid. Too afraid to face you. Too
+    afraid to face myself."'
+  - I thought leaving was the kindest thing I could do for you.
+  - "But now I know. . . leaving without saying anything \u2014 only turned love
+    into the deepest regret I\u2019ve ever known . "
+  - "I\u2019m sorry, Samuel."
+  - "If there is another life. . . I hope I\u2019ll be braver."
+  - 'Brave enough to stay.  '
+  - Brave enough to love .
+  - Brave enough to never lose you again .
+  pauseUntilNextLine:
+  - 5
+  - 7
+  - 7
+  - 7
+  - 9
+  - 11
+  - 11
+  - 8
+  - 5.5
+  - 7
+  - 4
+  - 8
+  - 8
+  - 7
+  - 4
+  - 3.5
+  - 8
+  - 5
+  - 6
+  - 6
+  - 6
+  - 7
+  - 2.5
+  - 9
+  - 4
+  - 9
+  - 2
+  - 4
+  - 2
+  - 2
+  - 3
