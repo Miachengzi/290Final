@@ -221,7 +221,7 @@ MonoBehaviour:
     value: -10
   tint:
     overrideState: 1
-    value: 9
+    value: 26.6
   colorFilter:
     overrideState: 1
     value: {r: 0.9997744, g: 1, b: 0.9098039, a: 1}

@@ -65,14 +65,14 @@ public class PrefaceManager : MonoBehaviour
                 state = State.FadingOut;
             }
         }
-        if (state == State.LoadFirstScene)// || Input.GetKeyDown(KeyCode.A))
+        if (state == State.LoadFirstScene || Input.GetKeyDown(KeyCode.A))
         {
             GameManager.Instance.LoadSceneWithIndex(0);
         }
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    GameManager.Instance.LoadSceneWithIndex(1);
-        //}
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            GameManager.Instance.LoadSceneWithIndex(1);
+        }
     }
     private void FixedUpdate()
     {
