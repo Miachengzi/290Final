@@ -217,6 +217,22 @@
       },
       "hash": "b8bbd9012559aa17e476213d613c4041c5f8809d"
     },
+    "www.nulltale.huefolders": {
+      "version": "https://github.com/NullTale/HueFolders.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "249c8878b7c9d75195bf5d989d0abf40ef8eb4d9"
+    },
+    "www.nulltale.outlinefilter": {
+      "version": "https://github.com/NullTale/OutlineFilter.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "14.0.6"
+      },
+      "hash": "d720d3e8b7ecc97e47b1728bfc582433144aa8ae"
+    },
     "www.nulltale.vhsfx": {
       "version": "https://github.com/NullTale/VhsFx.git",
       "depth": 0,
