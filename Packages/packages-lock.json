@@ -217,6 +217,15 @@
       },
       "hash": "b8bbd9012559aa17e476213d613c4041c5f8809d"
     },
+    "www.nulltale.ditherfx": {
+      "version": "https://github.com/NullTale/DitherFx.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "14.0.6"
+      },
+      "hash": "adc21673e930dc024aef240906aee793c8f046a3"
+    },
     "www.nulltale.huefolders": {
       "version": "https://github.com/NullTale/HueFolders.git",
       "depth": 0,

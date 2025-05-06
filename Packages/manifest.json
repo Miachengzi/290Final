@@ -9,6 +9,7 @@
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.1",
     "se.hertzole.gold-player": "https://github.com/Hertzole/gold-player.git#package",
+    "www.nulltale.ditherfx": "https://github.com/NullTale/DitherFx.git",
     "www.nulltale.huefolders": "https://github.com/NullTale/HueFolders.git",
     "www.nulltale.outlinefilter": "https://github.com/NullTale/OutlineFilter.git",
     "www.nulltale.vhsfx": "https://github.com/NullTale/VhsFx.git",

@@ -382,6 +382,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _active: 1
   _shader: {fileID: 4800000, guid: 7197a098de6065f4ab8a580c8f8c7226, type: 3}
+--- !u!114 &1388314674482290709
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704e9f69207ce0e44a2be12086db83b0, type: 3}
+  m_Name: Dither
+  m_EditorClassIdentifier: 
+  _active: 1
+  _shader: {fileID: 4800000, guid: 0e83aac3b775ca94b92d8aaafbad155e, type: 3}
+  _noiseScale: 0.5
+  _scaleRange: {x: 1, y: 100}
+  _palette: {fileID: 2800000, guid: f0323015424723846be8cbd5f6b23d08, type: 3}
+  _pattern: {fileID: 2800000, guid: a7ad2a875f5fcf442a267169bae8f2bb, type: 3}
+  _noiseMode: 1
+  _pixelate: 1
+  _scale: 0.735
+  _frameRate: 0
 --- !u!114 &1806715081394840888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +440,7 @@ MonoBehaviour:
   _passes:
     m_List:
     - {fileID: 6355292849058267543}
+    - {fileID: 1388314674482290709}
     - {fileID: 4796836672636551235}
     - {fileID: -6170876301006265328}
     - {fileID: -326289747771826617}
