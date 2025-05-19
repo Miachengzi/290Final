@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using Scythe.Accessibility;
+using VolFx;
+using UnityEngine.Rendering;
 
 public class PrefaceManager : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class PrefaceManager : MonoBehaviour
     public Transform player;
 
     public PostProcessVolume postVolume;
+
+    public VolFx.VolFx volFx;
+
+    public VolumeProfile profile;
+
+    private AdjustmentsVol adjustment;
 
     private ColorGrading colorGrading;
 
@@ -35,6 +43,9 @@ public class PrefaceManager : MonoBehaviour
     void Start()
     {
         state = State.None;
+
+        adjustment = (AdjustmentsVol)profile.components.Find(component => component.name == "Adjustments" || component.GetType() == typeof(AdjustmentsVol));
+        adjustment.m_Brightness.value = 0f;
 
         if (postVolume.profile.TryGetSettings(out colorGrading))
         {
@@ -78,7 +89,11 @@ public class PrefaceManager : MonoBehaviour
     {
         if (state == State.FadingOut)
         {
-            colorGrading.postExposure.value += ((Time.fixedDeltaTime * fadeSpeed) * fadeStrength);
+            var value = (Time.fixedDeltaTime * fadeSpeed) * fadeStrength;
+            
+            colorGrading.postExposure.value += (value);
+
+            adjustment.m_Brightness.value = Mathf.InverseLerp(0f, 17f, colorGrading.postExposure.value);
 
             if (colorGrading.postExposure.value > 17.0f)
             {
@@ -91,5 +106,6 @@ public class PrefaceManager : MonoBehaviour
     {
         if(SubtitleManager.instance != null)
             SubtitleManager.instance.OnSubtitleFinished.RemoveAllListeners();
+        adjustment.m_Brightness.value = 0f;
     }
 }
