@@ -45,7 +45,8 @@ public class PrefaceManager : MonoBehaviour
         state = State.None;
 
         adjustment = (AdjustmentsVol)profile.components.Find(component => component.name == "Adjustments" || component.GetType() == typeof(AdjustmentsVol));
-        adjustment.m_Brightness.value = 0f;
+        if(adjustment != null)
+            adjustment.m_Brightness.value = 0f;
 
         if (postVolume.profile.TryGetSettings(out colorGrading))
         {
@@ -106,6 +107,8 @@ public class PrefaceManager : MonoBehaviour
     {
         if(SubtitleManager.instance != null)
             SubtitleManager.instance.OnSubtitleFinished.RemoveAllListeners();
-        adjustment.m_Brightness.value = 0f;
+
+        if (adjustment != null)
+            adjustment.m_Brightness.value = 0f;
     }
 }
